@@ -8,6 +8,34 @@ In particular, review the changes when updating, until a proper release is ready
 
 **Do not try to use a gem version**. While the name has been [reserved](https://rubygems.org/gems/kiba-common), the gem is not yet published for real. Use git master directly.
 
+## Currently available
+
+### Kiba::Common::DSLExtensions::Logger
+
+A simple logging facility.
+
+Usage:
+
+```ruby
+require 'kiba-common/dsl_extensions/logger'
+extend Kiba::Common::DSLExtensions::Logger
+
+pre_process do
+  logger.info "pre_process is running!"
+end
+```
+
+By default the logger will output to `STDOUT`.
+
+You can customize that behaviour by setting the logger:
+
+```ruby
+require 'kiba-common/dsl_extensions/logger'
+extend Kiba::Common::DSLExtensions::Logger
+
+logger = Logger.new(xxx)
+```
+
 ## Contributing & Legal
 
 (agreement below borrowed from Sidekiq Legal)
