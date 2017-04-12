@@ -38,6 +38,21 @@ extend Kiba::Common::DSLExtensions::Logger
 logger = Logger.new(xxx)
 ```
 
+### Kiba::Common::DSLExtensions::ShowMe
+
+A way to color-dump rows on the screen, useful at development time while you are looking at the data (requires the `awesome_print` gem).
+
+Usage:
+
+```ruby
+require 'kiba-common/dsl_extensions/show_me'
+extend Kiba::Common::DSLExtensions::ShowMe
+
+source MySource
+transform MyTransform
+show_me! # will color-print the row at this step of the pipeline
+```
+
 ## Contributing & Legal
 
 (agreement below borrowed from Sidekiq Legal)
