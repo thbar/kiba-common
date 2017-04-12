@@ -1,4 +1,4 @@
-require 'ap'
+require 'awesome_print'
 
 module Kiba
   module Common
