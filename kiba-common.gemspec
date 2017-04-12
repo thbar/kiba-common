@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Kiba::Common::VERSION
 
+  gem.add_dependency 'kiba', '~> 1.0.0'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'minitest'
   gem.add_development_dependency 'awesome_print'
