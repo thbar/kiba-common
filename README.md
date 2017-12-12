@@ -4,13 +4,19 @@ Please consider it a work-in-progress for the time being.
 
 In particular, review the changes when updating, until a proper release is ready.
 
-[![Build Status](https://travis-ci.org/thbar/kiba-common.svg?branch=master)](https://travis-ci.org/thbar/kiba-common)
+[![Build Status](https://travis-ci.org/thbar/kiba-common.svg?branch=master)](https://travis-ci.org/thbar/kiba-common) [![Gem Version](https://badge.fury.io/rb/kiba-common.svg)](https://badge.fury.io/rb/kiba-common)
 
 ## Usage
 
-**Do not try to use a gem version**. While the name has been [reserved](https://rubygems.org/gems/kiba-common), the gem is not yet published for real. Use git master directly.
+Add `kiba-common` to your `Gemfile`:
 
-## Currently available
+```ruby
+gem 'kiba-common'
+```
+
+Then see below for each module usage & require clause.
+
+## Available extensions
 
 ### Kiba::Common::DSLExtensions::Logger
 
