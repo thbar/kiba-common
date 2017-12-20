@@ -16,7 +16,7 @@ class TestCSVDestination < Minitest::Test
       ]
       destination Kiba::Common::Destinations::CSV,
         filename: TEST_FILENAME,
-        csv_options: { col_sep: ';', headers: true }
+        csv_options: { col_sep: ';' }
     end
 
     Kiba.run(job)

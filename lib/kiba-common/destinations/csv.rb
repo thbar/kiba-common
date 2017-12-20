@@ -6,12 +6,9 @@ module Kiba
       class CSV
         attr_reader :filename, :csv_options
         
-        def initialize(filename:, csv_options: {headers: true})
+        def initialize(filename:, csv_options: nil)
           @filename = filename
           @csv_options = csv_options
-          unless @csv_options[:headers] == true
-            fail ":headers CSV option must be set to true for now"
-          end
         end
         
         def write(row)
