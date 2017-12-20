@@ -20,9 +20,13 @@ Then see below for each module usage & require clause.
 
 ### Kiba::Common::Destinations::CSV
 
-A way to dump `Hash` rows as CSV, using the first row's keys as headers.
+A way to dump `Hash` rows as CSV.
 
 All rows are expected to have the exact same set of keys as the first row.
+
+The headers will be the first row keys, unless you pass an array of keys via `headers`.
+
+All keys are mandatory (although they can have a nil value).
 
 Use the `csv_options` keyword to control the output format like you would do when using [Ruby CSV class](http://ruby-doc.org/stdlib-2.4.0/libdoc/csv/rdoc/CSV.html#method-c-new).
 
@@ -31,25 +35,19 @@ Usage:
 ```ruby
 require 'kiba-common/destinations/csv'
 
-destination Kiba::Common::Destinations::CSV,
-  filename: 'output.csv',
-  csv_options: { headers: true } # this is the default
-  
-# if you need a different separator, use:
-destination Kiba::Common::Destinations::CSV,
-  filename: 'output.csv',
-  csv_options: { col_sep: ';', headers: true }
-```
-
-If you do not want to output some fields, you are expected to drop them from the rows before:
-
-```ruby
-require 'active_support/core_ext/hash/except'
-
-transform { |r| r.except(:some_field) }
-
+# by default, the headers will be picked from the first row:
 destination Kiba::Common::Destinations::CSV,
   filename: 'output.csv'
+
+# if you need a different separator:
+destination Kiba::Common::Destinations::CSV,
+  filename: 'output.csv',
+  csv_options: { col_sep: ';' }
+  
+# to enforce a specific set of headers:
+destination Kiba::Common::Destinations::CSV,
+  filename: 'output.csv',
+  headers: [:field, :other_field]
 ```
 
 ### Kiba::Common::DSLExtensions::Logger

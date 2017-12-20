@@ -4,24 +4,23 @@ module Kiba
   module Common
     module Destinations
       class CSV
-        attr_reader :filename, :csv_options
+        attr_reader :filename, :csv_options, :csv, :headers
         
-        def initialize(filename:, csv_options: nil)
+        def initialize(filename:, csv_options: nil, headers: nil)
           @filename = filename
           @csv_options = csv_options
+          @headers = headers
         end
         
         def write(row)
           @csv ||= ::CSV.open(filename, 'wb', csv_options)
-          @headers ||= begin
-            @csv << (headers = row.keys)
-            headers
-          end
-          @csv << row.fetch_values(*headers)
+          @headers ||= row.keys
+          @headers_written ||= (csv << headers ; true)
+          csv << row.fetch_values(*@headers)
         end
         
         def close
-          @csv&.close
+          csv&.close
         end
       end
     end
