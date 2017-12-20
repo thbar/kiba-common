@@ -12,6 +12,10 @@ gem 'kiba-common'
 
 Then see below for each module usage & require clause.
 
+## Supported Ruby versions
+
+`kiba-common` currently supports Ruby 2.3+ and JRuby (with its default 1.9 syntax). See [test matrix](https://travis-ci.org/thbar/kiba-common).
+
 ## Available components
 
 ### Kiba::Common::Destinations::CSV
