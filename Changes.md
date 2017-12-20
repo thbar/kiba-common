@@ -1,6 +1,9 @@
 HEAD
 ----
 
+0.0.2
+----
+
 - Update: `show_me!` can be called with a block to pre-process the row before printing.
 
 0.0.1
