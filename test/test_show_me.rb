@@ -16,4 +16,16 @@ class TestShowMe < Minitest::Test
       Kiba.run(job)
     end
   end
+  
+  def test_show_me_pre_process
+    job = Kiba.parse do
+      extend Kiba::Common::DSLExtensions::ShowMe
+      source TestEnumerableSource, [{this: "OK", not_this: "KO"}]
+      show_me! { |r| r.fetch(:this) }
+    end
+
+    assert_called(Kernel, :ap, ['OK']) do
+      Kiba.run(job)
+    end
+  end
 end

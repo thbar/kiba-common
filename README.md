@@ -55,6 +55,14 @@ transform MyTransform
 show_me! # will color-print the row at this step of the pipeline
 ```
 
+You can also pre-process the data to only show specific parts of the row:
+
+```ruby
+require 'active_support/core_ext/hash/except'
+
+show_me! { |r| r.except(:some_noisy_field) }
+```
+
 ## Contributing & Legal
 
 (agreement below borrowed from Sidekiq Legal)
