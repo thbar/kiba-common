@@ -24,7 +24,7 @@ A way to dump `Hash` rows as CSV, using the first row's keys as headers.
 
 All rows are expected to have the exact same set of keys as the first row.
 
-Use the `csv_options` keyword to control the output format like you would do when using [Ruby CSV class] (http://ruby-doc.org/stdlib-2.4.0/libdoc/csv/rdoc/CSV.html#method-c-new).
+Use the `csv_options` keyword to control the output format like you would do when using [Ruby CSV class](http://ruby-doc.org/stdlib-2.4.0/libdoc/csv/rdoc/CSV.html#method-c-new).
 
 Usage:
 
