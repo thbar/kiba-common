@@ -1,6 +1,9 @@
 HEAD
 ----
 
+0.0.3
+-----
+
 - Breaking: Kiba::Common requires Ruby 2.3+ from now on.
 - New: Kiba::Common::Destinations:CSV allows to write ruby hashes to a CSV file.
 
