@@ -12,7 +12,43 @@ gem 'kiba-common'
 
 Then see below for each module usage & require clause.
 
-## Available extensions
+## Supported Ruby versions
+
+`kiba-common` currently supports Ruby 2.3+ and JRuby (with its default 1.9 syntax). See [test matrix](https://travis-ci.org/thbar/kiba-common).
+
+## Available components
+
+### Kiba::Common::Destinations::CSV
+
+A way to dump `Hash` rows as CSV.
+
+All rows are expected to have the exact same set of keys as the first row.
+
+The headers will be the first row keys, unless you pass an array of keys via `headers`.
+
+All keys are mandatory (although they can have a nil value).
+
+Use the `csv_options` keyword to control the output format like you would do when using [Ruby CSV class](http://ruby-doc.org/stdlib-2.4.0/libdoc/csv/rdoc/CSV.html#method-c-new).
+
+Usage:
+
+```ruby
+require 'kiba-common/destinations/csv'
+
+# by default, the headers will be picked from the first row:
+destination Kiba::Common::Destinations::CSV,
+  filename: 'output.csv'
+
+# if you need a different separator:
+destination Kiba::Common::Destinations::CSV,
+  filename: 'output.csv',
+  csv_options: { col_sep: ';' }
+  
+# to enforce a specific set of headers:
+destination Kiba::Common::Destinations::CSV,
+  filename: 'output.csv',
+  headers: [:field, :other_field]
+```
 
 ### Kiba::Common::DSLExtensions::Logger
 
