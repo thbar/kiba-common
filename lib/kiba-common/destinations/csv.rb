@@ -8,7 +8,7 @@ module Kiba
         
         def initialize(filename:, csv_options: nil, headers: nil)
           @filename = filename
-          @csv_options = csv_options
+          @csv_options = csv_options || {}
           @headers = headers
         end
         
