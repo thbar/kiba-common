@@ -1,6 +1,9 @@
 HEAD
 ----
 
+0.0.4
+-----
+
 - Update: Kiba::Common::Destinations:CSV compatibility fix for Ruby 2.5
 
 0.0.3
