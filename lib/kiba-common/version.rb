@@ -1,5 +1,5 @@
 module Kiba
   module Common
-    VERSION = '0.0.4'
+    VERSION = '0.5.0'
   end
 end

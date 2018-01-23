@@ -1,6 +1,9 @@
 HEAD
 ----
 
+0.5.0
+-----
+
 - New: Kiba::Common::Sources::Enumerable allow to use any Ruby instance responding to `#each` (or a `Proc` returning such an instance) as a source for rows.
 
 0.0.4
