@@ -18,6 +18,26 @@ Then see below for each module usage & require clause.
 
 ## Available components
 
+### Kiba::Common::Sources::Enumerable
+
+A source enabling any enumerable (or rather any class implementing `each`) to generate rows for a data pipeline.
+
+Usage:
+
+```ruby
+require 'kiba-common/sources/enumerable'
+
+# will generate one row per number between 1 and 100
+source Kiba::Common::Sources::Enumerable, (1..100)
+```
+
+You can pass a callable to make sure the evaluation will occur after your [pre-processors](https://github.com/thbar/kiba/wiki/Implementing-pre-and-post-processors) (which is considered a good thing), like this:
+
+```ruby
+# will evaluate the list of files at run time, after "pre_process" steps are called
+source Kiba::Common::Sources::Enumerable, -> { Dir["input/*.json"] }
+```
+
 ### Kiba::Common::Destinations::CSV
 
 A way to dump `Hash` rows as CSV.
