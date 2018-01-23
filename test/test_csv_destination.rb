@@ -11,7 +11,7 @@ class TestCSVDestination < Minitest::Test
 
   def run_etl(csv_options: nil, headers: nil)
     job = Kiba.parse do
-      source TestEnumerableSource, [
+      source Kiba::Common::Sources::Enumerable, [
         {name: "world", age: 999}
       ]
       destination Kiba::Common::Destinations::CSV,
