@@ -8,7 +8,7 @@ class TestShowMe < Minitest::Test
   def test_show_me
     job = Kiba.parse do
       extend Kiba::Common::DSLExtensions::ShowMe
-      source TestEnumerableSource, ['row']
+      source Kiba::Common::Sources::Enumerable, ['row']
       show_me!
     end
     
@@ -20,7 +20,7 @@ class TestShowMe < Minitest::Test
   def test_show_me_pre_process
     job = Kiba.parse do
       extend Kiba::Common::DSLExtensions::ShowMe
-      source TestEnumerableSource, [{this: "OK", not_this: "KO"}]
+      source Kiba::Common::Sources::Enumerable, [{this: "OK", not_this: "KO"}]
       show_me! { |r| r.fetch(:this) }
     end
 
