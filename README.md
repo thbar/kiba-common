@@ -65,6 +65,37 @@ transform { |r| r.search('/orders') }
 transform Kiba::Common::Transforms::EnumerableExploder
 ```
 
+Similarly, if you have a CSV document as your input:
+
+| po_number  | buyers |
+| ------------- | ------------- |
+| 00001  | John:Mary:Sally  |
+
+and you want to reformat it to get this instead:
+
+| po_number | buyer |
+|-------------|---------|
+| 00001 | John |
+| 00001 | Mary |
+| 00001 | Sally |
+
+then you can explode them again with:
+
+```ruby
+source MyCSVSource, filename: "input.csv"
+
+transform do |row|
+  row.fetch(:buyers).split(':').map do |buyer|
+    { 
+      po_number: row.fetch(:po_number),
+      buyer: buyer
+    }
+  end
+end
+
+transform Kiba::Common::Transforms::EnumerableExploder
+```
+
 ### Kiba::Common::Destinations::CSV
 
 A way to dump `Hash` rows as CSV.
