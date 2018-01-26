@@ -38,6 +38,64 @@ You can pass a callable to make sure the evaluation will occur after your [pre-p
 source Kiba::Common::Sources::Enumerable, -> { Dir["input/*.json"] }
 ```
 
+### Kiba::Common::Transforms::EnumerableExploder
+
+A transform calling `each` on input rows (assuming they are e.g. arrays of sub-rows) and yielding one output row per enumerated element.
+
+Requirements: [Kiba v2](https://github.com/thbar/kiba/releases/tag/v2.0.0) with `StreamingRunner` enabled.
+
+Usage:
+
+```ruby
+require 'kiba-common/transforms/enumerable_exploder'
+
+transform Kiba::Common::Transforms::EnumerableExploder
+```
+
+For instance, this can help if you are reading XML/JSON documents from a source, and each input document contains multiple rows that you'd want to extract.
+
+```ruby
+source Kiba::Common::Sources::Enumerable, -> { Dir["input/*.xml"] }
+
+transform { |r| IO.binread(r) }
+transform { |r| Nokogiri::XML(r) }
+# this will return an array of XML elements
+transform { |r| r.search('/orders') }
+# this will explode the array (one order per output row)
+transform Kiba::Common::Transforms::EnumerableExploder
+```
+
+Similarly, if you have a CSV document as your input:
+
+| po_number  | buyers |
+| ------------- | ------------- |
+| 00001  | John:Mary:Sally  |
+
+and you want to reformat it to get this instead:
+
+| po_number | buyer |
+|-------------|---------|
+| 00001 | John |
+| 00001 | Mary |
+| 00001 | Sally |
+
+then you can explode them again with:
+
+```ruby
+source MyCSVSource, filename: "input.csv"
+
+transform do |row|
+  row.fetch(:buyers).split(':').map do |buyer|
+    { 
+      po_number: row.fetch(:po_number),
+      buyer: buyer
+    }
+  end
+end
+
+transform Kiba::Common::Transforms::EnumerableExploder
+```
+
 ### Kiba::Common::Destinations::CSV
 
 A way to dump `Hash` rows as CSV.
