@@ -1,6 +1,11 @@
 HEAD
 ----
 
+0.6.0
+-----
+
+- New: Kiba::Common::Transforms::EnumerableExploder will explode each enumerable row (responding to `#each`) into N rows.
+
 0.5.0
 -----
 
