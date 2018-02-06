@@ -50,6 +50,8 @@ Leveraging that possibility, you can use a `SourceTransformAdapter` to dynamical
 
 This allows to mix-and-match components in a much more versatile & powerful way.
 
+Requirements: Kiba v2 with `StreamingRunner` enabled.
+
 Usage:
 
 ```ruby
