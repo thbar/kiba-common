@@ -38,6 +38,37 @@ You can pass a callable to make sure the evaluation will occur after your [pre-p
 source Kiba::Common::Sources::Enumerable, -> { Dir["input/*.json"] }
 ```
 
+### Kiba::Common::Transforms::SourceTransformAdapter
+
+Let's say you have a source (e.g. `CSVSource`), which you would like to instantiate for each input row (e.g. a list of filenames). 
+
+Normally you'd have to bake file iteration right inside your source. 
+
+But since Kiba v2 introduction of `StreamingRunner`, it is possible for transforms to yield an arbitrary (potentially infinite) amount of rows.
+
+Leveraging that possibility, you can use a `SourceTransformAdapter` to dynamically instantiate the source for each of your input rows.
+
+This allows to mix-and-match components in a much more versatile & powerful way.
+
+Usage:
+
+```ruby
+source Kiba::Common::Sources::Enumerable, -> { Dir["input/*.csv"] }
+
+transform do |r|
+  # build up the args that you would normally pass to your source, e.g.
+  # source MyCSV, filename: 'file.csv'
+  # but instead, using the input as a parameter
+  [MyCSVSource, filename: r]
+end
+
+# this will instantiate one source per input row, yielding rows
+# that your source would normally yield
+transform Kiba::Common::Transforms::SourceTransformAdapter
+```
+
+This can be used for a wide array of scenarios, including extracting data for N third-party accounts of a same system, with an array of API keys etc.
+
 ### Kiba::Common::Transforms::EnumerableExploder
 
 A transform calling `each` on input rows (assuming they are e.g. arrays of sub-rows) and yielding one output row per enumerated element.
