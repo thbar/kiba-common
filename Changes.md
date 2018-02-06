@@ -1,6 +1,8 @@
 HEAD
 ----
 
+- New: Kiba::Common::Transforms::SourceTransformAdapter let you transform rows into parameters for source instantiation.
+
 0.6.0
 -----
 
