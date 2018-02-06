@@ -15,7 +15,7 @@ class TestSourceTransformAdapter < Minitest::Test
         [ Enumerable, (1..10) ],
         [ Enumerable, (11..20) ]
       ]
-      transform SourceTransformAdapter
+      transform Kiba::Common::Transforms::SourceTransformAdapter
       destination TestArrayDestination, rows
     end
     Kiba.run(job)
