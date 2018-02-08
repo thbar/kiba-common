@@ -48,7 +48,7 @@ But since Kiba v2 introduction of `StreamingRunner`, it is possible for transfor
 
 Leveraging that possibility, you can use a `SourceTransformAdapter` to dynamically instantiate the source for each of your input rows.
 
-This allows to mix-and-match components in a much more versatile & powerful way.
+This allows you to mix-and-match components in a much more versatile & powerful way.
 
 Requirements: Kiba v2 with `StreamingRunner` enabled.
 
@@ -85,7 +85,7 @@ require 'kiba-common/transforms/enumerable_exploder'
 transform Kiba::Common::Transforms::EnumerableExploder
 ```
 
-For instance, this can help if you are reading XML/JSON documents from a source, and each input document contains multiple rows that you'd want to extract.
+This can help if you are reading XML/JSON documents from a source and each input document contains multiple rows that you want to extract.
 
 ```ruby
 source Kiba::Common::Sources::Enumerable, -> { Dir["input/*.xml"] }
@@ -104,7 +104,7 @@ Similarly, if you have a CSV document as your input:
 | ------------- | ------------- |
 | 00001  | John:Mary:Sally  |
 
-and you want to reformat it to get this instead:
+and you want to reformat it to the following:
 
 | po_number | buyer |
 |-------------|---------|
@@ -135,11 +135,11 @@ A way to dump `Hash` rows as CSV.
 
 All rows are expected to have the exact same set of keys as the first row.
 
-The headers will be the first row keys, unless you pass an array of keys via `headers`.
+The headers will be the first row keys unless you pass an array of keys via `headers`.
 
-All keys are mandatory (although they can have a nil value).
+All keys are mandatory (although they can have a `nil` value).
 
-Use the `csv_options` keyword to control the output format like you would do when using [Ruby CSV class](http://ruby-doc.org/stdlib-2.4.0/libdoc/csv/rdoc/CSV.html#method-c-new).
+Use the `csv_options` keyword to control the output format like when using [Ruby CSV class](http://ruby-doc.org/stdlib-2.4.0/libdoc/csv/rdoc/CSV.html#method-c-new).
 
 Usage:
 
@@ -189,7 +189,7 @@ logger = Logger.new(xxx)
 
 ### Kiba::Common::DSLExtensions::ShowMe
 
-A way to color-dump rows on the screen, useful at development time while you are looking at the data (requires the `awesome_print` gem).
+A way to color-dump rows on the screen, useful during development when you are inspecting the data (requires the `awesome_print` gem).
 
 Usage:
 
