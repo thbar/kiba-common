@@ -212,6 +212,8 @@ show_me! { |r| r.except(:some_noisy_field) }
 
 ## Contributing & Legal
 
+See [LICENSE](LICENSE) for license.
+
 (agreement below borrowed from Sidekiq Legal)
 
 By submitting a Pull Request, you disavow any rights or claims to any changes submitted to the Kiba Common project and assign the copyright of those changes to LoGeek SARL.
