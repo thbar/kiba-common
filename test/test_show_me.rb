@@ -18,14 +18,18 @@ class TestShowMe < Minitest::Test
   end
   
   def test_show_me_pre_process
+    output = []
     job = Kiba.parse do
       extend Kiba::Common::DSLExtensions::ShowMe
       source Kiba::Common::Sources::Enumerable, [{this: "OK", not_this: "KO"}]
       show_me! { |r| r.fetch(:this) }
+      destination TestArrayDestination, output
     end
 
     assert_called(Kernel, :ap, ['OK']) do
       Kiba.run(job)
     end
+    
+    assert_equal [{this: "OK", not_this: "KO"}], output
   end
 end

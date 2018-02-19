@@ -6,12 +6,12 @@ module Kiba
       # Color print your row.
       module ShowMe
         def show_me!(&pre_process)
-          transform do |row|
-            row = pre_process ? pre_process.call(row) : row
+          transform do |original_row|
+            row = pre_process ? pre_process.call(original_row) : original_row
             # NOTE: invoking Kernel.ap for testing since
             # ap itself is harder to mock (Kiba Context)
             Kernel.ap(row)
-            row
+            original_row
           end
         end
       end

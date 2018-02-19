@@ -1,6 +1,11 @@
 HEAD
 ----
 
+0.8.0
+-----
+
+- Bugfix: `show_me!` used with a block should not modify the processed row.
+
 0.7.0
 -----
 
