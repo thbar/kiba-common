@@ -6,7 +6,7 @@ module Kiba
       class CSV
         attr_reader :filename, :csv_options
 
-        def initialize(filename, csv_options: {})
+        def initialize(filename:, csv_options: {})
           @filename = filename
           @csv_options = csv_options
         end
