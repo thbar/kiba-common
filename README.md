@@ -129,6 +129,25 @@ end
 transform Kiba::Common::Transforms::EnumerableExploder
 ```
 
+### Kiba::Common::Sources::CSV
+
+A CSV source for basic needs (in particular, it doesn't yield row metadata, which are useful in more advanced scenarios).
+
+Use the `csv_options` keyword to control the input format like when using [Ruby CSV class](http://ruby-doc.org/stdlib-2.4.0/libdoc/csv/rdoc/CSV.html#method-c-new).
+
+Usage:
+
+```ruby
+require 'kiba-common/sources/csv'
+
+# by defaults, csv_options are empty
+source Kiba::Common::Sources::CSV, filename: 'input.csv'
+
+# you can provide your own csv_options
+source Kiba::Common::Sources::CSV, filename: 'input.csv',
+  csv_options: { headers: true, header_converters: :symbol }
+```
+
 ### Kiba::Common::Destinations::CSV
 
 A way to dump `Hash` rows as CSV.
