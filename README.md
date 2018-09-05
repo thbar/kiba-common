@@ -129,6 +129,62 @@ end
 transform Kiba::Common::Transforms::EnumerableExploder
 ```
 
+### Kiba::Common::Sources::CSV
+
+A CSV source for basic needs (in particular, it doesn't yield row metadata, which are useful in more advanced scenarios).
+
+Use the `csv_options` keyword to control the input format like when using [Ruby CSV class](http://ruby-doc.org/stdlib-2.4.0/libdoc/csv/rdoc/CSV.html#method-c-new).
+
+Usage:
+
+```ruby
+require 'kiba-common/sources/csv'
+
+# by defaults, csv_options are empty
+source Kiba::Common::Sources::CSV, filename: 'input.csv'
+
+# you can provide your own csv_options
+source Kiba::Common::Sources::CSV, filename: 'input.csv',
+  csv_options: { headers: true, header_converters: :symbol }
+```
+
+#### Handling multiple input CSV files
+
+You can process multiple files by chaining the various components available in Kiba Common (see `test/test_integration#test_multiple_csv_inputs` for an actual demo):
+
+```ruby
+# create one row per input filename
+source Kiba::Common::Sources::Enumerable, -> { Dir[File.join(dir, '*.csv')] }
+
+# out of that row, create configuration for a CSV source
+transform do |r|
+  [
+    Kiba::Common::Sources::CSV,
+    filename: r,
+    csv_options: { headers: true, header_converters: :symbol }
+  ]
+end
+
+# instantiate & yield CSV rows for each configuration
+transform Kiba::Common::Transforms::SourceTransformAdapter
+```
+
+Alternatively, you can wrap this source in your own source like this:
+
+```ruby
+class MultipleCSVSource
+  def initialize(file_pattern:, csv_options:)
+
+  def each
+    Dir[file_pattern].each do |filename|
+      Kiba::Common::Sources::CSV.new(filename, csv_options).each do |row|
+        yield row
+      end
+    end
+  end
+end
+```
+
 ### Kiba::Common::Destinations::CSV
 
 A way to dump `Hash` rows as CSV.
