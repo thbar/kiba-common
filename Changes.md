@@ -1,6 +1,9 @@
 HEAD
 ----
 
+0.9.0
+-----
+
 - New: Kiba::Common::Sources::CSV provides a basic CSV source for simple needs.
 
 0.8.0
