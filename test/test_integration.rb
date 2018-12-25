@@ -52,8 +52,8 @@ class TestIntegration < Minitest::Test
 
   def test_csv_source_and_destination
     Dir.mktmpdir do |dir|
-      input_file = File.join(dir, '003.csv')
-      output_file = File.join(dir, '004.csv')
+      input_file = File.join(dir, 'input.csv')
+      output_file = File.join(dir, 'output.csv')
       write_csv input_file, [first_name: 'John']
 
       job = Kiba.parse do
