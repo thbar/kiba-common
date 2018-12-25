@@ -49,4 +49,31 @@ class TestIntegration < Minitest::Test
       ], rows.map(&:to_h))
     end
   end
+
+  def test_csv_source_and_destination
+    Dir.mktmpdir do |dir|
+      input_file = File.join(dir, '003.csv')
+      output_file = File.join(dir, '004.csv')
+      write_csv input_file, [first_name: 'John']
+
+      job = Kiba.parse do
+        source Kiba::Common::Sources::CSV,
+          filename: input_file,
+          csv_options: {
+            headers: true
+          }
+        destination Kiba::Common::Destinations::CSV,
+          filename: output_file
+      end
+
+      Kiba.run(job)
+
+      run_etl = IO.read(output_file)
+
+      assert_equal <<~CSV, run_etl
+        first_name
+        John
+      CSV
+    end
+  end
 end
