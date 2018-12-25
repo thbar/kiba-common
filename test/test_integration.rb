@@ -4,6 +4,7 @@ require_relative 'support/test_array_destination'
 require 'kiba-common/transforms/source_transform_adapter'
 require 'kiba-common/sources/csv'
 require 'kiba-common/destinations/csv'
+require 'tmpdir'
 
 # a testbed to verify & showcase how you can chain multiple components
 class TestIntegration < Minitest::Test
