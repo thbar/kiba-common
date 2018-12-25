@@ -13,6 +13,7 @@ module Kiba
         end
         
         def write(row)
+          row = row.respond_to?(:to_hash) ? row.to_hash : row
           @csv ||= ::CSV.open(filename, 'wb', csv_options)
           @headers ||= row.keys
           @headers_written ||= (csv << headers ; true)
