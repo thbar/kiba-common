@@ -148,6 +148,14 @@ source Kiba::Common::Sources::CSV, filename: 'input.csv',
   csv_options: { headers: true, header_converters: :symbol }
 ```
 
+Note that the emitted rows are instances of [`CSV::Row`](http://ruby-doc.org/stdlib-2.5.3/libdoc/csv/rdoc/CSV/Row.html), part `Array` and part `Hash`, which retain order of fields and allow duplicates (unlike a regular `Hash`).
+
+If the rest of your pipeline expects `Hash` rows (like for instance `Kiba::Common::Destinations::CSV`), you'll want to transform the rows to `Hash` instances yourself using [`to_hash`](http://ruby-doc.org/stdlib-2.5.3/libdoc/csv/rdoc/CSV/Row.html#method-i-to_hash). This will "collapse the row into a simple Hash. Be warned that this discards field order and clobbers duplicate fields."
+
+```ruby
+transform { |r| r.to_hash }
+```
+
 #### Handling multiple input CSV files
 
 You can process multiple files by chaining the various components available in Kiba Common (see `test/test_integration#test_multiple_csv_inputs` for an actual demo):
