@@ -1,11 +1,10 @@
 language: ruby
-before_install:
-  # https://stackoverflow.com/a/47972768
-  - gem update --system
-  - gem update bundler
 rvm:
   - ruby-head
-  - 2.5.0
-  - 2.4.3
-  - 2.3.6
-  - jruby-9.1.15.0
+  - 2.6.0
+  - 2.5.3
+  - 2.4.5
+  - 2.3.8
+  - jruby-9.1.17.0
+  - jruby-9.2.5.0
+  - truffleruby
