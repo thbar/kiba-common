@@ -25,7 +25,7 @@ class TestIntegration < Minitest::Test
         config :kiba, runner: Kiba::StreamingRunner
 
         # create one row per input file
-        source Kiba::Common::Sources::Enumerable, -> { Dir[File.join(dir, '*.csv')] }
+        source Kiba::Common::Sources::Enumerable, -> { Dir[File.join(dir, '*.csv')].sort }
 
         # out of that row, create configuration for a CSV source
         transform do |r|
