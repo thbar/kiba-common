@@ -11,3 +11,4 @@ rvm:
   - 2.3.6
   - jruby-9.1.15.0
   - jruby-9.2.5.0
+  - truffleruby
