@@ -225,6 +225,30 @@ destination Kiba::Common::Destinations::CSV,
   headers: [:field, :other_field]
 ```
 
+### Kiba::Common::Destinations::Lambda
+
+At times, it can be convenient to use a block form for a destination (pretty much like Kiba's built-in "block transform"), especially for one-off scripts.
+
+The Lambda destination is there for that purpose.
+
+Example use:
+
+```ruby
+require 'kiba-common/destinations/lambda'
+
+destination Kiba::Common::Destinations::Lambda,
+  # called at destination instantiation time (once)
+  on_init: -> { ... },
+  # called for each row
+  on_write: -> (row) { ... },
+  # called after all the rows have been written
+  on_close: -> { ... }
+```
+
+Each "callback" (e.g. `on_init`) is optional.
+
+The callback code can refer to scope variables or instance variables you may have declared above.
+
 ### Kiba::Common::DSLExtensions::Logger
 
 A simple logging facility.
