@@ -12,6 +12,10 @@ Gem::Specification.new do |gem|
   gem.name          = 'kiba-common'
   gem.require_paths = ['lib']
   gem.version       = Kiba::Common::VERSION
+  gem.metadata      = {
+    'source_code_uri'   => 'https://github.com/thbar/kiba-common',
+    'documentation_uri' => 'https://github.com/thbar/kiba-common/blob/master/README.md',
+  }
 
   gem.add_dependency 'kiba', '>= 1.0.0', '< 4'
   gem.add_development_dependency 'rake'
