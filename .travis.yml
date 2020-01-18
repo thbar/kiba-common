@@ -1,7 +1,9 @@
 language: ruby
 rvm:
   # see https://www.ruby-lang.org/en/downloads/branches/
-  - ruby-head
+  # NOTE: temporarily disabled due to failures to be investigated - see #26
+  # - ruby-head
+  - 2.7
   - 2.6
   - 2.5
   - 2.4
