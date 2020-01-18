@@ -1,6 +1,12 @@
 HEAD
 ----
 
+1.0.0
+-----
+
+- Kiba ETL v3 compatibility
+- New: Kiba::Common::Destinations::Lambda lets you write block-form destinations (handy for one-off scripts).
+
 0.9.0
 -----
 
