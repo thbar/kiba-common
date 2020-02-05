@@ -12,3 +12,6 @@ rvm:
   - jruby-9.1
   - jruby-9.2
   - truffleruby
+# Freezing the JDK to provide some consistency between CI builds only.
+jdk:
+  - openjdk8
