@@ -7,7 +7,6 @@ class TestRowPreProcessorDestination < MiniTest::Test
   include Kiba::Common::Destinations
   include Kiba::Common::Sources
   
-  focus
   def test_filter_and_modify
     output = []
     close_called = false
