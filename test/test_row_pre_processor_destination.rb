@@ -26,4 +26,19 @@ class TestRowPreProcessorDestination < MiniTest::Test
     assert_equal [102, 104, 106, 108, 110], output
     assert_equal true, close_called
   end
+
+  def test_do_not_raise_if_destination_lacks_a_close_method
+    output = []
+    instance = Lambda.new(on_write: -> (r) { output << r })
+    instance.instance_eval('undef :close')
+    Lambda.stub(:new, instance) do
+      Kiba.run(Kiba.parse do
+        source Enumerable, (1..10)
+        destination DestinationPreProcessor,
+          row_pre_processor: -> (r) { r },
+          destination: [ Lambda ]
+      end)
+      assert_equal (1..10).to_a, output
+    end
+  end
 end

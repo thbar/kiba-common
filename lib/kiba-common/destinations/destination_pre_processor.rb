@@ -16,7 +16,7 @@ module Kiba
         end
         
         def close
-          destination&.close
+          destination.close if destination&.respond_to?(:close)
           @destination = nil
         end
       end
