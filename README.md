@@ -40,9 +40,9 @@ source Kiba::Common::Sources::Enumerable, -> { Dir["input/*.json"] }
 
 ### Kiba::Common::Transforms::SourceTransformAdapter
 
-Let's say you have a source (e.g. `CSVSource`), which you would like to instantiate for each input row (e.g. a list of filenames). 
+Let's say you have a source (e.g. `CSVSource`), which you would like to instantiate for each input row (e.g. a list of filenames).
 
-Normally you'd have to bake file iteration right inside your source. 
+Normally you'd have to bake file iteration right inside your source.
 
 But since Kiba v2 introduction of `StreamingRunner`, it is possible for transforms to yield an arbitrary (potentially infinite) amount of rows.
 
@@ -119,7 +119,7 @@ source MyCSVSource, filename: "input.csv"
 
 transform do |row|
   row.fetch(:buyers).split(':').map do |buyer|
-    { 
+    {
       po_number: row.fetch(:po_number),
       buyer: buyer
     }
@@ -218,11 +218,33 @@ destination Kiba::Common::Destinations::CSV,
 destination Kiba::Common::Destinations::CSV,
   filename: 'output.csv',
   csv_options: { col_sep: ';' }
-  
+
 # to enforce a specific set of headers:
 destination Kiba::Common::Destinations::CSV,
   filename: 'output.csv',
   headers: [:field, :other_field]
+
+# use the row_pre_processor-feature to...
+# ...skip rows
+destination Kiba::Common::Destinations::CSV,
+  filename: 'output.csv',
+  row_pre_processor: -> (row) { row[:field] < 600 ? row : nil }
+
+# ...modify rows
+destination Kiba::Common::Destinations::CSV,
+  filename: 'output.csv',
+  row_pre_processor: -> (row) {
+    row.reduce({}) do |mod_row, (k, v)|
+      mod_row.merge(k.to_s.upcase.to_sym => v)
+    end
+  }
+
+# ...manifold rows
+destination Kiba::Common::Destinations::CSV,
+  filename: 'output.csv',
+  row_pre_processor: -> (row) {
+    [row, { name: "#{row[:name]}2" }]
+  }
 ```
 
 ### Kiba::Common::Destinations::Lambda

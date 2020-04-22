@@ -75,4 +75,21 @@ class TestCSVDestination < Minitest::Test
       mars,555
     CSV
   end
+
+  def test_manifold_row_pre_processor
+    row_pre_processor = -> (row) {
+      [
+        row,
+        { name: "#{row[:name]}2", age: 444 }
+      ]
+    }
+
+    assert_equal <<~CSV, run_etl(row_pre_processor: row_pre_processor)
+      name,age
+      world,999
+      world2,444
+      mars,555
+      mars2,444
+    CSV
+  end
 end
