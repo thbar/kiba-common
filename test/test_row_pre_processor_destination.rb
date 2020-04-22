@@ -14,7 +14,7 @@ class TestRowPreProcessorDestination < MiniTest::Test
     job = Kiba.parse do
       source Enumerable, (1..10)
       destination DestinationPreProcessor,
-        pre_processor: -> (r) { r % 2 == 0 ? 100 + r : nil },
+        row_pre_processor: -> (r) { r % 2 == 0 ? 100 + r : nil },
         destination: [
           Lambda,
           on_write: -> (r) { output << r },
