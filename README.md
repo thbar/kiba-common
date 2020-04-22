@@ -193,6 +193,54 @@ class MultipleCSVSource
 end
 ```
 
+### Kiba:Common::Destinations::DestinationPreProcessor
+
+In some scenarios, it can be useful to have multiple destinations in a Kiba job (see [this wiki page](https://github.com/thbar/kiba/wiki/Can-Kiba-handle-multiple-sources-and-destinations%3F) for more information on that).
+
+Usually, you will implement some form of filtering on the input rows, to decide what needs to be actually processed by the destination.
+
+The `DestinationPreProcessor` provides a destination-independent way to implement such filtering.
+
+Usage:
+
+```ruby
+require 'kiba-common/destinations/destination_pre_processor'
+
+# Here we'll route based on some field value
+destination Kiba::Common::Destinations::DestinationPreProcessor,
+  row_pre_processor: -> (r) { r.fetch(:type) == 1 ? r : nil },
+  destination: [ MyDestinationClass, my_destination_config... ]
+
+# Here we decide that everything that wasn't handled before, must be handled now
+destination Kiba::Common::Destinations::DestinationPreProcessor,
+  row_pre_processor: -> (r) { r.fetch(:type) != 1 ? r : nil },
+  destination: [ MyDestinationClass, my_other_destination_config... ]
+```
+
+This "decorator" works like this:
+- The destination class will be instantiated with the provided configuration
+- The decorator will pre-process each input row by calling `row_pre_processor`.
+- If you return `nil`, the row will be dismissed.
+- If you return something else, it will get passed to the configured destination `write` method.
+- The destination `close` method (if one exists) will be called at the end (only if no error occurred)
+
+This pre-processor can also be used to massage the data before the destination gets it.
+
+:warning: in this case, make sure to never mutate the input row, in particular if you are using multiple destinations, because the mutated row will be passed to the next destination. You should not rely on that behaviour, and instead use isolated copies, or avoid mutating the input, at all.
+
+An example of that is:
+
+```ruby
+destination Kiba::Common::Destinations::DestinationPreProcessor,
+  row_pre_processor: -> (row) {
+    # Create a new row, converting the keys to symbols
+    row.each_with_object({}) do |r, (k, v)|
+      r[k.to_sym] = v
+    end
+  },
+  destination: [ MyDestinationClass, my_destination_config... ]
+```
+
 ### Kiba::Common::Destinations::CSV
 
 A way to dump `Hash` rows as CSV.
