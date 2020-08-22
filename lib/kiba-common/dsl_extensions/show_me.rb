@@ -1,5 +1,3 @@
-require 'awesome_print'
-
 module Kiba
   module Common
     module DSLExtensions

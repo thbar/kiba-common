@@ -277,7 +277,7 @@ logger = Logger.new(xxx)
 
 ### Kiba::Common::DSLExtensions::ShowMe
 
-A way to color-dump rows on the screen, useful during development when you are inspecting the data (requires the `awesome_print` gem).
+A way to color-dump rows on the screen, useful during development when you are inspecting the data (requires the `amazing_print` gem).
 
 Usage:
 
