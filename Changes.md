@@ -1,7 +1,7 @@
 HEAD
 ----
 
-- Breaking: for Ruby 2.7+ `show_me!` requires `amazing_print` gem. `awesome_print` is no longer actively maintained.
+- Breaking: `show_me!` is now compatible with both `awesome_print` and its modern replacement `amazing_print`. You will have to `require` the one you want to use in your code from now on.
 
 1.0.0
 -----
