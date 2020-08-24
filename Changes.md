@@ -1,6 +1,8 @@
 HEAD
 ----
 
+- Breaking: `show_me!` is now compatible with both `awesome_print` and its modern replacement `amazing_print`. You will have to `require` the one you want to use in your code from now on.
+
 1.0.0
 -----
 
