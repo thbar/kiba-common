@@ -1,5 +1,6 @@
 require_relative 'helper'
 require 'kiba'
+require 'amazing_print'
 require 'kiba-common/dsl_extensions/show_me'
 
 class TestShowMe < Minitest::Test
