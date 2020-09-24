@@ -1,5 +1,4 @@
 require_relative 'helper'
-require 'kiba-common/transforms/source_transform_adapter'
 require_relative 'support/test_keyword_proxy_source'
 require_relative 'support/test_hash_configured_object'
 
@@ -17,7 +16,16 @@ class TestSourceTransformAdapter < Minitest::Test
         [ Enumerable, (1..10) ],
         [ Enumerable, (11..20) ]
       ]
-      transform Kiba::Common::Transforms::SourceTransformAdapter
+
+      transform do |klass, args|
+        Enumerator.new do |y|
+          klass.new(args).each do |r|
+            y << r
+          end
+        end
+      end
+      transform Kiba::Common::Transforms::EnumerableExploder
+
       destination TestArrayDestination, rows
     end
     Kiba.run(job)
@@ -31,7 +39,16 @@ class TestSourceTransformAdapter < Minitest::Test
         # Test against a class that expects explicit keyword arguments
         [ TestKeywordProxySource, {mandatory: "some value"} ]
       ]
-      transform Kiba::Common::Transforms::SourceTransformAdapter
+
+      transform do |klass, args|
+        Enumerator.new do |y|
+          klass.new(**args).each do |r|
+            y << r
+          end
+        end
+      end
+      transform Kiba::Common::Transforms::EnumerableExploder
+
       destination TestArrayDestination, rows
     end
     Kiba.run(job)
@@ -47,7 +64,16 @@ class TestSourceTransformAdapter < Minitest::Test
         # Test against a class that takes a single Hash argument
         [ TestHashConfiguredObject, {mandatory: "some value"} ]
       ]
-      transform Kiba::Common::Transforms::SourceTransformAdapter
+
+      transform do |klass, args|
+        Enumerator.new do |y|
+          klass.new(**args).each do |r|
+            y << r
+          end
+        end
+      end
+      transform Kiba::Common::Transforms::EnumerableExploder
+
       destination TestArrayDestination, rows
     end
     Kiba.run(job)
