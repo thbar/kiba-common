@@ -1,7 +1,27 @@
 HEAD
 ----
 
+- Support for Ruby 2.7+ (affects CSV source and destination)
 - Breaking: `show_me!` is now compatible with both `awesome_print` and its modern replacement `amazing_print`. You will have to `require` the one you want to use in your code from now on.
+- Breaking: `SourceTransformAdapter` has been removed due to complexities with Ruby 2.7+ keyword arguments. The suggested replacement is to use `Enumerator` and `EnumerableExploder` like this:
+
+```ruby
+# before
+transform SourceTransformAdapter
+
+# after
+transform do |klass, args|
+  Enumerator.new do |y|
+    # NOTE: you may have to use double-splat (**) here instead
+    # if you provide keyword arguments, or other variants
+    klass.new(*args).each do |r|
+      y << r
+    end
+  end
+end
+
+transform Kiba::Common::Transforms::EnumerableExploder
+```
 
 1.0.0
 -----

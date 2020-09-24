@@ -2,6 +2,10 @@ require_relative 'helper'
 require_relative 'support/test_keyword_proxy_source'
 require_relative 'support/test_hash_configured_object'
 
+# NOTE: the SourceTransformAdapter has been removed,
+# but I'm keeping these tests, patched to instead use
+# Enumerator, as a way to verify that the alternative
+# I provided in the change log still works.
 class TestSourceTransformAdapter < Minitest::Test
   include Kiba::Common::Sources
   include Kiba::DSLExtensions
