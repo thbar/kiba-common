@@ -18,10 +18,10 @@ class TestCSVSource < MiniTest::Test
     FileUtils.rm(TEST_FILENAME) if File.exist?(TEST_FILENAME)
   end
 
-  def run_job(*args)
+  def run_job(args)
     rows = []
     job = Kiba.parse do
-      source Kiba::Common::Sources::CSV, *args
+      source Kiba::Common::Sources::CSV, **args
       destination TestArrayDestination, rows
     end
     Kiba.run(job)

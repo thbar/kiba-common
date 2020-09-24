@@ -1,8 +1,7 @@
 language: ruby
 rvm:
   # see https://www.ruby-lang.org/en/downloads/branches/
-  # NOTE: temporarily disabled due to failures to be investigated - see #26
-  # - ruby-head
+  - ruby-head
   - 2.7
   - 2.6
   - 2.5
@@ -13,3 +12,6 @@ rvm:
   - jruby-9.1
   - jruby-9.2
   - truffleruby
+# Freezing the JDK to provide some consistency between CI builds only.
+jdk:
+  - openjdk8

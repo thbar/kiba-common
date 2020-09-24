@@ -1,7 +1,6 @@
 require_relative 'helper'
 require 'kiba'
 require_relative 'support/test_array_destination'
-require 'kiba-common/transforms/source_transform_adapter'
 require 'kiba-common/sources/csv'
 require 'kiba-common/destinations/csv'
 
@@ -36,9 +35,15 @@ class TestIntegration < Minitest::Test
           ]
         end
 
-        # instantiate & yield CSV rows for each configuration
-        transform Kiba::Common::Transforms::SourceTransformAdapter
-
+        transform do |klass, args|
+          Enumerator.new do |y|
+            klass.new(**args).each do |r|
+              y << r
+            end
+          end
+        end
+        transform Kiba::Common::Transforms::EnumerableExploder
+ 
         destination TestArrayDestination, rows
       end
       Kiba.run(job)

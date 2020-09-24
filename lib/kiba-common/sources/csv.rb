@@ -12,7 +12,7 @@ module Kiba
         end
 
         def each
-          ::CSV.foreach(filename, csv_options) do |row|
+          ::CSV.foreach(filename, **csv_options) do |row|
             yield row
           end
         end
