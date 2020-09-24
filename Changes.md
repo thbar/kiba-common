@@ -1,4 +1,4 @@
-HEAD
+1.1.0
 ----
 
 - Support for Ruby 2.7+ (affects CSV source and destination)
