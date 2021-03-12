@@ -1,6 +1,6 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require 'minitest/focus'
+require "minitest/autorun"
+require "minitest/pride"
+require "minitest/focus"
 
-require 'kiba-common/sources/enumerable'
-require_relative 'support/assert_called'
+require "kiba-common/sources/enumerable"
+require_relative "support/assert_called"

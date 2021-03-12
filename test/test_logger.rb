@@ -1,6 +1,6 @@
-require_relative 'helper'
-require 'kiba'
-require 'kiba-common/dsl_extensions/logger'
+require_relative "helper"
+require "kiba"
+require "kiba-common/dsl_extensions/logger"
 
 class TestLogger < Minitest::Test
   def test_default_logger
@@ -20,11 +20,11 @@ class TestLogger < Minitest::Test
       logger = Logger.new(buffer)
 
       pre_process do
-        logger.info 'Logging from pre_process'
+        logger.info "Logging from pre_process"
       end
     end
     Kiba.run(job)
 
-    assert_includes buffer.string, 'Logging from pre_process'
+    assert_includes buffer.string, "Logging from pre_process"
   end
 end

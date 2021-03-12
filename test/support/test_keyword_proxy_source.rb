@@ -3,7 +3,7 @@ class TestKeywordProxySource
     @mandatory = mandatory
     @optional = optional
   end
-  
+
   def each
     yield({
       mandatory: @mandatory,
