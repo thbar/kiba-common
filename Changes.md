@@ -1,3 +1,9 @@
+HEAD
+----
+
+- Drop support for Ruby < 2.5
+- Add compatibility for Kiba 4
+
 1.1.0
 ----
 

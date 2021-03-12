@@ -1,6 +1,7 @@
 Kiba Common is a companion gem to [Kiba](https://github.com/thbar/kiba) and [Kiba Pro](https://github.com/thbar/kiba/blob/master/Pro-Changes.md) in which I'll share commonly used helpers.
 
-[![Build Status](https://travis-ci.org/thbar/kiba-common.svg?branch=master)](https://travis-ci.org/thbar/kiba-common) [![Gem Version](https://badge.fury.io/rb/kiba-common.svg)](https://badge.fury.io/rb/kiba-common)
+[![Gem Version](https://badge.fury.io/rb/kiba-common.svg)](https://badge.fury.io/rb/kiba-common)
+[![Build Status](https://github.com/thbar/kiba-common/actions/workflows/ci.yml/badge.svg)](https://github.com/thbar/kiba-common/actions) 
 
 ## Usage
 
@@ -14,7 +15,8 @@ Then see below for each module usage & require clause.
 
 ## Supported Ruby versions
 
-`kiba-common` currently supports Ruby 2.3+ and JRuby (with its default 1.9 syntax). See [test matrix](https://travis-ci.org/thbar/kiba-common).
+`kiba-common` currently supports Ruby 2.5+, JRuby 9.2+ and TruffleRuby. See [test matrix](https://github.com/thbar/kiba-common/actions).
+
 
 ## Available components
 
