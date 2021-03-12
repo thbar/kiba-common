@@ -1,4 +1,4 @@
-require 'logger'
+require "logger"
 
 module Kiba
   module Common
@@ -10,7 +10,7 @@ module Kiba
         end
 
         def logger
-          @logger ||= self.logger = ::Logger.new(STDOUT)
+          @logger ||= self.logger = ::Logger.new($stdout)
         end
       end
     end

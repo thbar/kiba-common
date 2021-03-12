@@ -1,6 +1,6 @@
-require_relative 'helper'
-require_relative 'support/test_keyword_proxy_source'
-require_relative 'support/test_hash_configured_object'
+require_relative "helper"
+require_relative "support/test_keyword_proxy_source"
+require_relative "support/test_hash_configured_object"
 
 # NOTE: the SourceTransformAdapter has been removed,
 # but I'm keeping these tests, patched to instead use
@@ -17,8 +17,8 @@ class TestSourceTransformAdapter < Minitest::Test
       config :kiba, runner: Kiba::StreamingRunner
 
       source Enumerable, [
-        [ Enumerable, (1..10) ],
-        [ Enumerable, (11..20) ]
+        [Enumerable, (1..10)],
+        [Enumerable, (11..20)]
       ]
 
       transform do |klass, args|
@@ -35,13 +35,13 @@ class TestSourceTransformAdapter < Minitest::Test
     Kiba.run(job)
     assert_equal (1..20).to_a, rows
   end
-  
+
   def test_instantiation_keyword_arguments
     rows = []
     job = Kiba.parse do
       source Enumerable, [
         # Test against a class that expects explicit keyword arguments
-        [ TestKeywordProxySource, {mandatory: "some value"} ]
+        [TestKeywordProxySource, {mandatory: "some value"}]
       ]
 
       transform do |klass, args|
@@ -60,13 +60,13 @@ class TestSourceTransformAdapter < Minitest::Test
       {mandatory: "some value", optional: nil}
     ], rows)
   end
-  
+
   def test_hash_configured_object
     rows = []
     job = Kiba.parse do
       source Enumerable, [
         # Test against a class that takes a single Hash argument
-        [ TestHashConfiguredObject, {mandatory: "some value"} ]
+        [TestHashConfiguredObject, {mandatory: "some value"}]
       ]
 
       transform do |klass, args|

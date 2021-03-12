@@ -7,7 +7,7 @@ module Kiba
         def initialize(enumerable)
           @enumerable = enumerable
         end
-        
+
         def unwrap_enumerable
           enumerable.respond_to?(:call) ? enumerable.call : enumerable
         end
