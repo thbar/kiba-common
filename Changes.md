@@ -3,6 +3,8 @@ HEAD
 
 - Drop support for Ruby < 2.5
 - Add compatibility for Kiba 4
+- [StandardRB](https://github.com/testdouble/standard) has been added for formatting & linting the codebase.
+
 
 1.1.0
 ----
