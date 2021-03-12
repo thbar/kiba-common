@@ -15,7 +15,10 @@ module Kiba
         def write(row)
           @csv ||= ::CSV.open(filename, "wb", **csv_options)
           @headers ||= row.keys
-          @headers_written ||= (csv << headers; true)
+          @headers_written ||= begin
+            csv << headers
+            true
+          end
           csv << row.fetch_values(*@headers)
         end
 
