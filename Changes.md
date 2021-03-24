@@ -1,5 +1,5 @@
-HEAD
-----
+1.5.0
+-----
 
 - Support for Kiba 4
 - Breaking: Drop support for Ruby < 2.5
@@ -8,7 +8,7 @@ HEAD
 
 
 1.1.0
-----
+-----
 
 - Support for Ruby 2.7+ (affects CSV source and destination)
 - Breaking: `show_me!` is now compatible with both `awesome_print` and its modern replacement `amazing_print`. You will have to `require` the one you want to use in your code from now on.
