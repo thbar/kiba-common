@@ -30,7 +30,7 @@ class TestCSVSource < MiniTest::Test
 
   def test_with_csv_options
     rows = run_job filename: TEST_FILENAME,
-                   csv_options: {headers: true, header_converters: :symbol}
+      csv_options: {headers: true, header_converters: :symbol}
 
     assert_equal [CSV::Row], rows.map(&:class).uniq
     assert_equal([
