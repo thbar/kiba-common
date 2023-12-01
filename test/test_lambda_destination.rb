@@ -2,7 +2,7 @@ require_relative "helper"
 require "kiba"
 require "kiba-common/destinations/lambda"
 
-class TestLambdaDestination < MiniTest::Test
+class TestLambdaDestination < Minitest::Test
   def test_lambda
     accumulator = []
     on_init_called = false
