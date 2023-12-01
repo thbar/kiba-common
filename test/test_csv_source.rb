@@ -3,7 +3,7 @@ require "kiba"
 require "kiba-common/sources/csv"
 require_relative "support/test_array_destination"
 
-class TestCSVSource < MiniTest::Test
+class TestCSVSource < Minitest::Test
   TEST_FILENAME = "input.csv"
 
   def setup
