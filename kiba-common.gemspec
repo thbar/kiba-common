@@ -24,4 +24,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "amazing_print"
   gem.add_development_dependency "minitest-focus"
   gem.add_development_dependency "standard"
+  gem.add_development_dependency "csv"
 end
