@@ -14,6 +14,7 @@ class TestSourceTransformAdapter < Minitest::Test
     rows = []
     job = Kiba.parse do
       extend Config
+
       config :kiba, runner: Kiba::StreamingRunner
 
       source Enumerable, [

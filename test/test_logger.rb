@@ -7,6 +7,7 @@ class TestLogger < Minitest::Test
     actual_logger = nil
     Kiba.parse do
       extend Kiba::Common::DSLExtensions::Logger
+
       actual_logger = logger
     end
     assert actual_logger.is_a?(Logger)
@@ -17,6 +18,7 @@ class TestLogger < Minitest::Test
 
     job = Kiba.parse do
       extend Kiba::Common::DSLExtensions::Logger
+
       logger = Logger.new(buffer)
 
       pre_process do

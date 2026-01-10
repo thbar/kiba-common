@@ -1,4 +1,4 @@
-require 'minitest/mock'
+require "minitest/mock"
 
 module AssertCalled
   def assert_called(klass, method, args, return_value = nil)
