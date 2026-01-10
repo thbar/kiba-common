@@ -20,7 +20,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "kiba", ">= 3.0.0", "< 5"
   gem.add_development_dependency "rake"
-  gem.add_development_dependency "minitest"
+  gem.add_development_dependency "minitest", "~> 6.0"
+  gem.add_development_dependency "minitest-mock"
   gem.add_development_dependency "amazing_print"
   gem.add_development_dependency "minitest-focus"
   gem.add_development_dependency "standard"
