@@ -21,6 +21,7 @@ class TestIntegration < Minitest::Test
       job = Kiba.parse do
         # enable the new streaming-runner (for SourceTransformAdapter support)
         extend Kiba::DSLExtensions::Config
+
         config :kiba, runner: Kiba::StreamingRunner
 
         # create one row per input file

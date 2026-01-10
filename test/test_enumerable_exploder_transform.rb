@@ -11,6 +11,7 @@ class TestEnumerableExploderTransform < Minitest::Test
 
     job = Kiba.parse do
       extend Kiba::DSLExtensions::Config
+
       config :kiba, runner: Kiba::StreamingRunner
 
       source Kiba::Common::Sources::Enumerable, input
