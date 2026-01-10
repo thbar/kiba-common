@@ -15,7 +15,7 @@ Then see below for each module usage & require clause.
 
 ## Supported Ruby versions
 
-`kiba-common` currently supports Ruby 2.5+, JRuby 9.2+ and TruffleRuby. See [test matrix](https://github.com/thbar/kiba-common/actions).
+`kiba-common` currently supports Ruby 3.2+, JRuby 10+ and TruffleRuby. See [test matrix](https://github.com/thbar/kiba-common/actions).
 
 
 ## Available components
@@ -52,7 +52,7 @@ Leveraging that possibility, you can use a `SourceTransformAdapter` to dynamical
 
 This allows you to mix-and-match components in a much more versatile & powerful way.
 
-Requirements: Kiba v2 with `StreamingRunner` enabled.
+Requirements: Kiba v2+ with `StreamingRunner` enabled.
 
 Usage:
 
@@ -77,7 +77,7 @@ This can be used for a wide array of scenarios, including extracting data for N 
 
 A transform calling `each` on input rows (assuming they are e.g. arrays of sub-rows) and yielding one output row per enumerated element.
 
-Requirements: [Kiba v2](https://github.com/thbar/kiba/releases/tag/v2.0.0) with `StreamingRunner` enabled.
+Requirements: [Kiba v2+](https://github.com/thbar/kiba/releases/tag/v2.0.0) with `StreamingRunner` enabled.
 
 Usage:
 
